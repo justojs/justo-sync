@@ -1,0 +1,52 @@
+{
+  "name": "justo-sync",
+  "version": "0.1.0",
+  "description": "A synchronizer.",
+  "homepage": "http://justojs.org",
+  "author": {
+    "name": "Justo Labs",
+    "email": "justojs@justolabs.com",
+    "url": "http://justojs.org"
+  },
+  "contributors": [
+    {
+      "name": "Raúl G. González",
+      "email": "raulggonzalez@justojs.org",
+      "url": ""
+    }
+  ],
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/justojs/justo-sync/issues",
+    "email": "issues@justojs.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/justojs/justo-sync.git"
+  },
+  "engines": {
+    "node": ">= 5.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "dependencies": {
+    "deasync": "*"
+  },
+  "peerDependencies": {},
+  "devDependencies": {
+    "babel-preset-es2015": "*",
+    "justo": "*",
+    "justo-assert": "*",
+    "justo-plugin-babel": "*",
+    "justo-plugin-fs": "*",
+    "justo-plugin-jshint": "*",
+    "justo-plugin-npm": "*"
+  },
+  "preferGlobal": false,
+  "main": "index.js",
+  "files": [
+    "lib/"
+  ],
+  "scripts": {
+    "test": "justo test"
+  }
+}
