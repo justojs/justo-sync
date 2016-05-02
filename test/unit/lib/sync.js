@@ -1,4 +1,5 @@
 //imports
+const assert = require("assert");
 const fs = require("fs");
 const justo = require("justo");
 const suite = justo.suite;
@@ -9,19 +10,47 @@ const sync = require("../../../dist/es5/nodejs/justo-sync/lib/sync").default;
 
 //suite
 suite("sync", function() {
-  test("sync(fn) : object", function() {
-    sync(function(done) {
-      fs.readdir("test/unit/", function(error, files) {
-        done(undefined, "the value");
-      });
-    }).must.be.eq("the value");
+  suite("Value to return", function() {
+    test("sync(async : function) - done()", function() {
+      assert(sync(function(done) {
+        process.nextTick(function() {
+          done();
+        });
+      }) === undefined);
+    });
+
+    test("sync(async : function) : done(undefined, value)", function() {
+      sync(function(done) {
+        fs.readdir("test/unit/", function(error, files) {
+          done(undefined, "the value");
+        });
+      }).must.be.eq("the value");
+    });
+
+    test("sync(async : function) : done(null, value)", function() {
+      sync(function(done) {
+        fs.readdir("test/unit/", function(error, files) {
+          done(null, "the value");
+        });
+      }).must.be.eq("the value");
+    });
   });
 
-  test("sync(fn) throws error", function() {
-    sync.must.raise(Error, [function(done) {
-      fs.readdir("unknown", function(error, files) {
-        done(error);
-      });
-    }]);
+  suite("Exception to throw", function() {
+    test("sync(async : function) : done(error : Error)", function() {
+      sync.must.raise(Error, [function(done) {
+        fs.readdir("unknown", function(error, files) {
+          done(error);
+        });
+      }]);
+    });
+
+    test("sync(async : function) : done(error : string)", function() {
+      sync.must.raise(Error, [function(done) {
+        fs.readdir("unknown", function(error, files) {
+          done("an error");
+        });
+      }]);
+    });
   });
 })();

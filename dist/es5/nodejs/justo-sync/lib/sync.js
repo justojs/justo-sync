@@ -12,7 +12,7 @@ function (fn) {
 
 
   (0, _deasync2.default)(function (done) {
-    function mydone(err, res) {
+    function syncdone(err, res) {
       if (err) {
         if (err instanceof Error) done(err);else 
         done(new Error(err));} else 
@@ -22,7 +22,7 @@ function (fn) {
 
 
 
-    fn(mydone);})();
+    fn(syncdone);})();
 
 
 
