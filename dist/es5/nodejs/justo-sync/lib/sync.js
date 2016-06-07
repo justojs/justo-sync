@@ -7,6 +7,7 @@
 
 
 
+
 function (fn) {
   var result;
 
